@@ -1,7 +1,7 @@
 package job.stafffinder.controller;
 
 import job.stafffinder.model.User;
-import job.stafffinder.service.MailSendingService;
+import job.stafffinder.service.MailService;
 import job.stafffinder.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -19,7 +19,7 @@ public class UserController {
     private UserService userService;
 
     @Autowired
-    private MailSendingService mailService;
+    private MailService mailService;
 
     @RequestMapping(value = "/users", method = RequestMethod.POST, consumes = "application/json")
     public ResponseEntity<Void> registerUser(@RequestBody User user, UriComponentsBuilder uriBuilder, HttpServletRequest request) {

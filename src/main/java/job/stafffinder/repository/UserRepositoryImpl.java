@@ -55,7 +55,7 @@ public class UserRepositoryImpl implements UserRepository {
         parameters.put("email", user.getEmail());
         parameters.put("first_name", user.getFirstName());
         parameters.put("last_name", user.getLastName());
-        parameters.put("password", user.getLastName());
+        parameters.put("password", user.getPassword());
         parameters.put("landline_phone_number", user.getLandlinePhoneNumber());
         parameters.put("mobile_phone_number", user.getMobilePhoneNumber());
         return parameters;

@@ -1,6 +1,7 @@
 package job.stafffinder.controller;
 
 import job.stafffinder.model.User;
+import job.stafffinder.service.MailSendingService;
 import job.stafffinder.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -9,18 +10,24 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import javax.servlet.http.HttpServletRequest;
+
 @RestController
 public class UserController {
 
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private MailSendingService mailService;
+
     @RequestMapping(value = "/users", method = RequestMethod.POST, consumes = "application/json")
-    public ResponseEntity<Void> registerUser(@RequestBody User user, UriComponentsBuilder uriBuilder) {
+    public ResponseEntity<Void> registerUser(@RequestBody User user, UriComponentsBuilder uriBuilder, HttpServletRequest request) {
         if (userService.isExist(user)) {
             return new ResponseEntity<Void>(HttpStatus.CONFLICT);
         }
         userService.save(user);
+        mailService.notifyUserRegistred(user, request.getLocale());
 
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(uriBuilder.path("/users/{id}").buildAndExpand(user.getId()).toUri());

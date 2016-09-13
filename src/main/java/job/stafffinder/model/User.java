@@ -1,6 +1,6 @@
 package job.stafffinder.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 public class User {
 
@@ -8,7 +8,7 @@ public class User {
     private String email;
     private String firstName;
     private String lastName;
-    @JsonIgnore
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     private String password;
     private String landlinePhoneNumber;
     private String mobilePhoneNumber;

@@ -17,7 +17,7 @@ import java.util.Properties;
 @PropertySource(value = "classpath:email.properties")
 public class EmailConfig {
 
-    private static final String UTF_8 = "UTF-8";
+    public static final String UTF_8 = "UTF-8";
 
     @Bean
     public FreeMarkerConfigurationFactoryBean emailFreemarkerConfig() throws IOException, TemplateException {

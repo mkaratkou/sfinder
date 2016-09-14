@@ -4,7 +4,6 @@ import freemarker.template.Configuration;
 import freemarker.template.Template;
 import job.stafffinder.model.User;
 import org.apache.commons.collections.map.HashedMap;
-import org.apache.commons.io.Charsets;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +20,8 @@ import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.util.Locale;
 import java.util.Map;
+
+import static job.stafffinder.config.EmailConfig.UTF_8;
 
 @Service
 public class MailServiceImpl implements MailService {
@@ -60,7 +61,7 @@ public class MailServiceImpl implements MailService {
 
     private void prepareMimeMessage(String to, String bodyText, MimeMessage mimeMessage)
             throws Exception {
-        final MimeMessageHelper message = new MimeMessageHelper(mimeMessage, Charsets.UTF_8.name());
+        final MimeMessageHelper message = new MimeMessageHelper(mimeMessage, UTF_8);
 
         try {
             message.setSubject(environment.getProperty("email.userRegistered.subj"));

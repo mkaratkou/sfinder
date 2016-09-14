@@ -6,5 +6,5 @@ import java.util.Locale;
 
 public interface MailService {
 
-    void notifyUserRegistred(User user, Locale locale);
+    void notifyUserRegistered(User user, Locale locale);
 }

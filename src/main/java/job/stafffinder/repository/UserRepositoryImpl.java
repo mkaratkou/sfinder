@@ -3,13 +3,13 @@ package job.stafffinder.repository;
 import job.stafffinder.model.User;
 import job.stafffinder.repository.mapper.StringRowMapper;
 import job.stafffinder.repository.mapper.UserMapper;
-import org.apache.commons.collections.map.HashedMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.CollectionUtils;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -51,7 +51,7 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     private Map<String, Object> toNamedParameters(User user) {
-        Map<String, Object> parameters = new HashedMap();
+        Map<String, Object> parameters = new HashMap<>();
         parameters.put("email", user.getEmail());
         parameters.put("first_name", user.getFirstName());
         parameters.put("last_name", user.getLastName());

@@ -22,14 +22,14 @@ public class EmailConfig {
 
     @Bean
     public FreeMarkerConfigurationFactoryBean emailFreemarkerConfig() throws IOException, TemplateException {
-        FreeMarkerConfigurationFactoryBean freeMarkerConfigurationFactoryBean = new FreeMarkerConfigurationFactoryBean();
-        freeMarkerConfigurationFactoryBean.setTemplateLoaderPath("/WEB-INF/templates");
+        FreeMarkerConfigurationFactoryBean factoryBean = new FreeMarkerConfigurationFactoryBean();
+        factoryBean.setTemplateLoaderPath("/WEB-INF/templates");
         Properties freemarkerSettings = new Properties();
         freemarkerSettings.put("url_escaping_charset", UTF_8);
         freemarkerSettings.put("default_encoding", UTF_8);
-        freeMarkerConfigurationFactoryBean.setFreemarkerSettings(freemarkerSettings);
-        freeMarkerConfigurationFactoryBean.afterPropertiesSet();
-        return freeMarkerConfigurationFactoryBean;
+        factoryBean.setFreemarkerSettings(freemarkerSettings);
+        factoryBean.afterPropertiesSet();
+        return factoryBean;
     }
 
     @Bean

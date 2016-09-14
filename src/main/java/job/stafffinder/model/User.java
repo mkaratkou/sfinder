@@ -8,9 +8,9 @@ import org.hibernate.validator.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
-import static job.stafffinder.validation.ValidationMessages.REQUIRED_FIELD;
-import static job.stafffinder.validation.ValidationMessages.INVALID_NAME;
 import static job.stafffinder.validation.ValidationMessages.INVALID_EMAIL;
+import static job.stafffinder.validation.ValidationMessages.INVALID_NAME;
+import static job.stafffinder.validation.ValidationMessages.REQUIRED_FIELD;
 
 
 @UserPhoneNumberProvided

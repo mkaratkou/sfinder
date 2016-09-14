@@ -30,6 +30,7 @@ buildscript {
     // maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local' }
   }
 
+
   dependencies {
     classpath 'org.akhikhl.gretty:gretty:+'
   }
@@ -57,7 +58,7 @@ dependencies {
     compile ("org.springframework:spring-webmvc:${springVersion}")
     compile ("org.springframework:spring-jdbc:${springVersion}")
     compile ("org.springframework:spring-context-support:${springVersion}")
-    compile ("javax.servlet:servlet-api:${servletApiVersion}")
+    providedCompile ("javax.servlet:javax.servlet-api:${servletApiVersion}")
 
     compile ("com.fasterxml.jackson.core:jackson-core:${jacksonVersion}")
     compile ("com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}")
@@ -68,13 +69,17 @@ dependencies {
     compile ("commons-codec:commons-codec:${commonsCodecVersion}")
 
     compile ("mysql:mysql-connector-java:${mysqlConnectorVersion}")
-    compile ("org.apache.tomcat:tomcat-dbcp:${dbcpVersion}")
+    compile ("org.apache.tomcat:tomcat-dbcp:${dbcpVersion}") {
+        exclude group: "org.apache.tomcat", module: "tomcat-juli"
+    }
 
     compile ("commons-collections:commons-collections:${commonsVersion}")
     compile ("org.apache.commons:commons-lang3:${commonsVersion}")
 
     compile ("javax.validation:validation-api:${validationApiVersion}")
-    compile ("org.hibernate:hibernate-validator:${hibernateValidatorVersion}")
+    compile ("org.hibernate:hibernate-validator:${hibernateValidatorVersion}") {
+        exclude group:'org.jboss.logging'
+    }
 
     testCompile ("junit:junit:${junitVersion}")
 }

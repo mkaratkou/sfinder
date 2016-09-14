@@ -1,13 +1,24 @@
 package job.stafffinder.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import org.hibernate.validator.constraints.NotBlank;
+
+import javax.validation.constraints.Pattern;
+
+import static job.stafffinder.validation.Patterns.NAME_PATTERN;
 
 public class User {
 
     private Long id;
+    @NotBlank
     private String email;
+    @NotBlank(message = "error.invalid.name")
+    @Pattern(regexp=NAME_PATTERN, message = "error.invalid.name")
     private String firstName;
+    @NotBlank(message = "error.invalid.name")
+    @Pattern(regexp=NAME_PATTERN, message = "error.invalid.name")
     private String lastName;
+    @NotBlank
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     private String password;
     private String landlinePhoneNumber;

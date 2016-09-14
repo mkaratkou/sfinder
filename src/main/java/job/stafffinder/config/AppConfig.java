@@ -7,11 +7,13 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 @Configuration
 @EnableWebMvc
+@EnableAsync()
 @ComponentScan(basePackages = { "job.stafffinder" })
 @Import(value = { DbConfig.class, EmailConfig.class })
 public class AppConfig  extends WebMvcConfigurerAdapter {

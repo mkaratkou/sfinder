@@ -8,6 +8,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.ui.freemarker.FreeMarkerConfigurationFactoryBean;
 
 import java.io.IOException;
@@ -48,6 +49,13 @@ public class EmailConfig {
 
         sender.setJavaMailProperties(mailProperties);
         return sender;
+    }
+
+    @Bean
+    public ThreadPoolTaskExecutor mailThreadPoolTaskExecutor(Environment env) {
+        ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
+        executor.setMaxPoolSize(env.getRequiredProperty("email.sender.threadpool.maxsize", int.class));
+        return executor;
     }
 
 }

@@ -73,7 +73,6 @@ dependencies {
         exclude group: "org.apache.tomcat", module: "tomcat-juli"
     }
 
-    compile ("commons-collections:commons-collections:${commonsVersion}")
     compile ("org.apache.commons:commons-lang3:${commonsVersion}")
 
     compile ("javax.validation:validation-api:${validationApiVersion}")

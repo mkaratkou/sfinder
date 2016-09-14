@@ -69,17 +69,12 @@ dependencies {
     compile ("commons-codec:commons-codec:${commonsCodecVersion}")
 
     compile ("mysql:mysql-connector-java:${mysqlConnectorVersion}")
-    compile ("org.apache.tomcat:tomcat-dbcp:${dbcpVersion}") {
-        exclude group: "org.apache.tomcat", module: "tomcat-juli"
-    }
+    compile ("org.apache.tomcat:tomcat-dbcp:${dbcpVersion}")
 
     compile ("org.apache.commons:commons-lang3:${commonsVersion}")
 
     compile ("javax.validation:validation-api:${validationApiVersion}")
-    compile ("org.hibernate:hibernate-validator:${hibernateValidatorVersion}") {
-        exclude group:'org.jboss.logging'
-    }
-
+    compile ("org.hibernate:hibernate-validator:${hibernateValidatorVersion}")
     testCompile ("junit:junit:${junitVersion}")
 }
 

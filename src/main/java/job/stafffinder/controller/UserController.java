@@ -20,7 +20,7 @@ import java.util.Locale;
 import static java.lang.String.format;
 
 @RestController
-@RequestMapping(value = "/users")
+@RequestMapping(value = "/users", produces = "application/json;charset=UTF-8")
 public class UserController extends AbstractController {
 
     @Autowired

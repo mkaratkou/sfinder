@@ -1,4 +1,4 @@
-
+use users_db;
 drop table if exists T_USER;
 
 create table if not exists T_USER (

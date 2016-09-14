@@ -1,26 +1,38 @@
 package job.stafffinder.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import job.stafffinder.validation.UserPhoneNumberProvided;
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
-import static job.stafffinder.validation.Patterns.NAME_PATTERN;
+import static job.stafffinder.validation.ValidationMessages.REQUIRED_FIELD;
+import static job.stafffinder.validation.ValidationMessages.INVALID_NAME;
+import static job.stafffinder.validation.ValidationMessages.INVALID_EMAIL;
 
+
+@UserPhoneNumberProvided
 public class User {
 
     private Long id;
-    @NotBlank
+    @NotBlank(message = REQUIRED_FIELD)
+    @Email(message = INVALID_EMAIL)
     private String email;
-    @NotBlank(message = "error.invalid.name")
-    @Pattern(regexp=NAME_PATTERN, message = "error.invalid.name")
+
+    @NotNull(message = REQUIRED_FIELD)
+    @Pattern(regexp="(?=.*[a-z])(?=.*[A-Z]).{2,50}", message = INVALID_NAME)
     private String firstName;
-    @NotBlank(message = "error.invalid.name")
-    @Pattern(regexp=NAME_PATTERN, message = "error.invalid.name")
+
+    @NotNull(message = REQUIRED_FIELD)
+    @Pattern(regexp="(?=.*[a-z])(?=.*[A-Z]).{2,50}", message = INVALID_NAME)
     private String lastName;
-    @NotBlank
+
+    @NotBlank(message = REQUIRED_FIELD)
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     private String password;
+
     private String landlinePhoneNumber;
     private String mobilePhoneNumber;
 

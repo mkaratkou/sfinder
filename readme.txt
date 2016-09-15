@@ -4,9 +4,11 @@ Before you start.
 
 Install latest mysql DB Server / Dev install.
 Start MySql Server.
-Run scripts (as root user) from src/main/resources/db: 
- 1. db-create.sql
- 2. schema-create.sql
+1.Run scripts (as root user) from src/main/resources/db: 
+ 1.1 db-create.sql
+ 1.2. schema-create.sql
+2. Set JAVA_HOME env. variable
+3. Install & setup Gradle - https://docs.gradle.org/current/userguide/installation.html
                      
 Running application:
 1. To start application on embedded Jetty server run:

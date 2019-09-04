@@ -1,0 +1,83 @@
+group 'jobs.staff-finder'
+version "${productVersion}"
+
+apply plugin: 'war'
+apply plugin: 'idea'
+
+idea {
+    module {
+        downloadJavadoc = true
+        downloadSources = true
+    }
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+// In this section you declare where to find the dependencies of your project
+repositories {
+    // Use 'jcenter' for resolving your dependencies.
+    // You can declare any Maven/Ivy/file repository here.
+    jcenter()
+    // enable this to use snapshot versions of Gretty:
+    // maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local' }
+}
+
+buildscript {
+  repositories {
+    jcenter()
+    // enable this to use snapshot versions of Gretty:
+    // maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local' }
+  }
+
+
+  dependencies {
+    classpath 'org.akhikhl.gretty:gretty:+'
+  }
+}
+
+war {
+    baseName = 'userservice'
+    manifest {
+        attributes(
+                'Built-On': new Date().format('yyyy-MM-dd hh:mm:ss'),
+                'Version': version,
+        )}
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = "${gradleVersion}"
+}
+
+dependencies {
+
+    compile("org.slf4j:jcl-over-slf4j:${slf4jVersion}")
+    compile("ch.qos.logback:logback-classic:${logbackVersion}")
+    compile("ch.qos.logback:logback-core:${logbackVersion}")
+
+    compile ("org.springframework:spring-webmvc:${springVersion}")
+    compile ("org.springframework:spring-jdbc:${springVersion}")
+    compile ("org.springframework:spring-context-support:${springVersion}")
+    providedCompile ("javax.servlet:javax.servlet-api:${servletApiVersion}")
+
+    compile ("com.fasterxml.jackson.core:jackson-core:${jacksonVersion}")
+    compile ("com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}")
+    compile ("org.freemarker:freemarker:${freemarkerVersion}")
+
+    compile ("javax.mail:mail:${javaMailVersion}")
+
+    compile ("commons-codec:commons-codec:${commonsCodecVersion}")
+
+    compile ("mysql:mysql-connector-java:${mysqlConnectorVersion}")
+    compile ("org.apache.tomcat:tomcat-dbcp:${dbcpVersion}")
+
+    compile ("org.apache.commons:commons-lang3:${commonsVersion}")
+
+    compile ("javax.validation:validation-api:${validationApiVersion}")
+    compile ("org.hibernate:hibernate-validator:${hibernateValidatorVersion}")
+    testCompile ("junit:junit:${junitVersion}")
+}
+
+if (!project.plugins.findPlugin(org.akhikhl.gretty.GrettyPlugin))
+    project.apply(plugin: org.akhikhl.gretty.GrettyPlugin)
+

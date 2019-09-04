@@ -13,7 +13,7 @@ import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import javax.sql.DataSource;
 
 @Configuration
-@PropertySource(value = "classpath:db/db.properties")
+@PropertySource(value = "classpath:db.properties")
 public class DbConfig {
 
     public static final String[] USER_COLUMN_NAMES = {"email", "first_name", "last_name", "password",
